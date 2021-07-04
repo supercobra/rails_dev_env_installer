@@ -1,9 +1,9 @@
 # rails_is_easy
 
-Install Rails
+Rails Is Easy
 ======
 
-Install Rails is a script to set up a Linux or Mac OS X system for Rails development.
+Rails Is Easy is a script to set up a Linux or Mac OS X system for Rails development.
 
 Requirements
 ------------
@@ -57,7 +57,7 @@ Originally copied from https://github.com/techAPJ/install-rails.
 License
 -------
 
-Install Rails is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
 [git_link]: http://git-scm.com/
 [rbenv_link]: https://github.com/sstephenson/rbenv
