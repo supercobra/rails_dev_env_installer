@@ -91,3 +91,4 @@ log_info "Installing Node.js, yarn and more ..."
   sudo apt-get install -y nodejs
   sudo npm install -g svgo
   sudo npm install -g yarn
+  yarn global add nx
