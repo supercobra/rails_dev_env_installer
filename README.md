@@ -1,9 +1,7 @@
-# rails_is_easy
-
 Rails Is Easy
 ======
 
-Rails Is Easy is a script to set up a Linux or Mac OS X system for Rails development.
+Rails Is Easy is a shell script to set up a Linux or Mac OS X system for Rails development.
 
 Requirements
 ------------
