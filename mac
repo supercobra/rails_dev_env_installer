@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+# Install Rails
+
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+set -e
+
+create_zshrc_and_set_it_as_shell_file() {
+  if [ ! -f "$HOME/.zshrc" ]; then
+    touch "$HOME/.zshrc"
+  fi
+  shell_file="$HOME/.zshrc"
+}
+
+create_bashrc_and_set_it_as_shell_file() {
+  if [ ! -f "$HOME/.bashrc" ]; then
+    touch "$HOME/.bashrc"
+  fi
+  shell_file="$HOME/.bashrc"
+}
+
+case "$SHELL" in
+  */zsh) :
+    create_zshrc_and_set_it_as_shell_file
+  ;;
+  *)
+    create_bashrc_and_set_it_as_shell_file
+  ;;
+esac
+
+log_info() {
+  printf "\n\e[0;35m $1\e[0m\n\n"
+}
+
+if ! command -v brew &>/dev/null; then
+  log_info "Installing Homebrew, a good OS X package manager ..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  log_info "Homebrew already installed. Skipping ..."
+fi
+
+log_info "Updating Homebrew formulas ..."
+  brew update
+
+log_info "Installing Homebrew Services"
+  brew tap homebrew/services
+
+log_info "Installing Postgres, a good open source relational database ..."
+  brew install postgres
+
+log_info "Starting Postgres ..."
+  brew services start postgres
+
+log_info "Installing Redis, a good key-value database ..."
+  brew install redis
+
+log_info "Starting Redis ..."
+  brew services start redis
+
+log_info "Installing and linking ImageMagick, to crop and resize images ..."
+  brew install imagemagick
+
+log_info "Installing rbenv, to change Ruby versions ..."
+  brew install rbenv
+
+  if ! grep -qs "rbenv init" $shell_file; then
+    printf '\n# load rbenv\n' >> $shell_file
+    printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> $shell_file
+    printf 'eval "$(rbenv init - --no-rehash)"\n' >> $shell_file
+
+    log_info "Enable shims and autocompletion ..."
+      eval "$(rbenv init -)"
+  fi
+
+  export PATH="$HOME/.rbenv/bin:$PATH"
+
+log_info "Installing ruby-build, to install Rubies ..."
+  brew install ruby-build
+
+log_info "Upgrading and linking OpenSSL ..."
+  brew install openssl
+  brew link openssl --force
+
+log_info "Installing image libs ..."
+  brew install advancecomp gifsicle jhead jpegoptim jpeg optipng pngcrush pngquant
+
+log_info "Installing coreutils ..."
+  brew install coreutils
+
+ruby_version="2.7.3"
+
+log_info "Installing Ruby $ruby_version ..."
+  rbenv install "$ruby_version"
+
+log_info "Setting $ruby_version as global default Ruby ..."
+  rbenv global "$ruby_version"
+
+log_info "Updating to latest Rubygems version ..."
+  gem update --system
+
+log_info "Installing Bundler to install project-specific Ruby gems ..."
+  gem install bundler
+
+log_info "Configuring Bundler for faster, parallel gem installation ..."
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs $((number_of_cores - 1))
+
+log_info "Installing Rails ..."
+  gem install rails
+
+log_info "Installing Mailcatcher ..."
+  gem install mailcatcher
+
+log_info "Installing Yarn ..."
+  brew install yarn
