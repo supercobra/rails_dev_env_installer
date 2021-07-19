@@ -42,9 +42,8 @@ log_info "Installing Redis ..."
 log_info "Installing editors ..."
   sudo apt-get -y install vim emacs
   
-log_info "Installing zsh and oh my zsh ..."
+log_info "Installing zsh..."
   sudo apt-get -y install zsh
-  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   
 log_info "Installing network tools ..."
   sudo apt-get -y install curl iftop htop net-tools
