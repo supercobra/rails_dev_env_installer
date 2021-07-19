@@ -43,6 +43,8 @@ What it sets up
 * [Bundler][bundler_link]
 * [MailCatcher][mailcatcher_link] (Linux script only)
 * [ImageMagick][imagemagick_link]
+* Vim and Emacs
+* and many more utils for developers.
 
 It should take less than 15 minutes to install (depends on your machine).
 
