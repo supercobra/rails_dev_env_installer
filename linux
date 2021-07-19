@@ -34,8 +34,11 @@ log_info "Installing Postgres ..."
 log_info "Installing Redis ..."
   sudo apt-get -y install redis-server
 
-log_info "Installing curl ..."
-  sudo apt-get -y install curl
+log_info "Installing editors ..."
+  sudo apt-get -y install vim emacs
+
+log_info "Installing network tools ..."
+  sudo apt-get -y install curl iftop htop net-tools
 
 log_info "Installing ImageMagick ..."
   sudo apt-get -y install libtool
