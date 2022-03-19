@@ -81,7 +81,7 @@ log_info "Upgrading and linking OpenSSL ..."
   brew link openssl --force
 
 log_info "Installing image libs ..."
-  brew install advancecomp gifsicle jhead jpegoptim jpeg optipng pngcrush pngquant
+  brew install advancecomp jhead jpegoptim jpeg optipng oxipng pngcrush pngquant
 
 log_info "Installing coreutils ..."
   brew install coreutils
@@ -107,12 +107,8 @@ log_info "Configuring Bundler for faster, parallel gem installation ..."
 log_info "Installing Rails ..."
   gem install rails
 
-log_info "Installing Mailcatcher ..."
+log_info "Installing MailHog ..."
   brew install mailhog
-
-log_info "Installing Emacs..."
-
-brew install emacs
 
 log_info "Installing Yarn ..."
   brew install yarn
