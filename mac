@@ -85,6 +85,9 @@ log_info "Installing image libs ..."
 
 log_info "Installing coreutils ..."
   brew install coreutils
+  
+  log_info "Installing vips"
+  brew install vips
 
 ruby_version="2.7.3"
 
