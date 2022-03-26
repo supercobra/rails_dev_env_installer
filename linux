@@ -70,7 +70,7 @@ log_info "Installing ImageMagick ..."
   sudo ./install-imagemagick
 
 log_info "Installing image utilities ..."
-  sudo apt-get -y install advancecomp gifsicle jpegoptim libjpeg-progs optipng pngcrush pngquant
+  sudo apt-get -y install advancecomp gifsicle jpegoptim libjpeg-progs optipng pngcrush pngquant libvips
   sudo apt-get -y install jhead
 
 if [[ ! -d "$HOME/.rbenv" ]]; then
